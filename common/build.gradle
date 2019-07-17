@@ -1,0 +1,17 @@
+version '1.0.0-SNAPSHOT'
+
+dependencies{
+
+    compile "org.springframework.boot:spring-boot-starter-web"
+    runtime("mysql:mysql-connector-java:${mysqlConnectorVersion}")
+    compile ("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}") {
+        exclude group: 'com.baomidou',module: 'mybatis-plus-generator'
+    }
+    compile "com.baomidou:mybatis-plus:${mybatisPlusVersion}"
+    compile "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+    testCompile "junit:junit:${junitVersion}"
+    compile "commons-lang:commons-lang:${commonsLangVersion}"
+    compile "io.springfox:springfox-swagger2:${swaggerVersion}"
+    compile "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+
+}

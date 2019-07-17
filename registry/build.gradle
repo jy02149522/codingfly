@@ -1,0 +1,10 @@
+version '1.0.0-SNAPSHOT'
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+}
+
+
+

@@ -1,0 +1,83 @@
+plugins {
+    id "org.springframework.boot" version "2.0.4.RELEASE" apply false
+}
+
+group 'org.codingfly'
+version '1.0-SNAPSHOT'
+
+
+
+//放插件必须放在文件头
+subprojects {
+
+    //配置此项目的子项目
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+    apply plugin: 'io.spring.dependency-management'
+
+
+//    repositories {
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//        jcenter()
+//        mavenCentral()
+//        //Spring repo
+//        maven { url "http://repo.spring.io/snapshot" }
+//        maven { url "http://repo.spring.io/milestone" }
+//        maven { url "http://repo.spring.io/release" }
+//        maven { url 'http://repo.spring.io/plugins-snapshot' }
+//    }
+
+
+    ext {
+
+        springBootVersion = "2.0.4.RELEASE"
+        mybatisPlusVersion = "3.1.2"
+        junitVersion = "4.12"
+        mysqlConnectorVersion = "5.1.46"
+        lombokVersion = "1.18.6"
+        swaggerVersion = "2.7.0"
+        druidVersion = "1.1.13"
+        shiroVersion = "1.4.0"
+        commonsLangVersion = "2.6"
+        springCloudVersion='Finchley.SR2'  }
+
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+
+    // 依赖管理
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    dependencies {
+
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    }
+
+
+//    test {
+//        testLogging {
+//            showStandardStreams = true
+//        }
+//    }
+
+
+
+}
+
+
