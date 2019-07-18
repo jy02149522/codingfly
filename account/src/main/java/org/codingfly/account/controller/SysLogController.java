@@ -1,84 +1,48 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package org.codingfly.account.controller;
 
-import org.codingfly.account.entity.SysLogEntity;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.codingfly.account.service.SysLogService;
 import org.codingfly.common.entity.R;
 import org.codingfly.common.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
 import java.util.Map;
-
 
 
 /**
  * 系统日志
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2019-07-03 16:07:33
+ * @author Mark sunlightcs@gmail.com
  */
-@RestController
-@RequestMapping("generator/syslog")
+@Controller
+@RequestMapping("/sys/log")
 public class SysLogController {
-    @Autowired
-    private SysLogService sysLogService;
+	@Autowired
+	private SysLogService sysLogService;
+	
+	/**
+	 * 列表
+	 */
+	@ResponseBody
+	@GetMapping("/list")
+	@RequiresPermissions("sys:log:list")
+	public R list(@RequestParam Map<String, Object> params){
+		PageUtils page = sysLogService.queryPage(params);
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = sysLogService.queryPage(params);
-
-        return R.ok().put("page", page);
-    }
-
-
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{id}")
-
-    public R info(@PathVariable("id") Long id){
-		SysLogEntity sysLog = sysLogService.getById(id);
-
-        return R.ok().put("sysLog", sysLog);
-    }
-
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-
-    public R save(@RequestBody SysLogEntity sysLog){
-		sysLogService.save(sysLog);
-
-        return R.ok();
-    }
-
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-
-    public R update(@RequestBody SysLogEntity sysLog){
-		sysLogService.updateById(sysLog);
-
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-
-    public R delete(@RequestBody Long[] ids){
-		sysLogService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
-    }
-
+		return R.ok().put("page", page);
+	}
+	
 }

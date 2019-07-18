@@ -40,7 +40,10 @@ subprojects {
         druidVersion = "1.1.13"
         shiroVersion = "1.4.0"
         commonsLangVersion = "2.6"
-        springCloudVersion='Finchley.SR2'  }
+        springCloudVersion="Finchley.SR2"
+        shiroVersion = "1.4.0"
+        commonsIoVersion = "2.5"
+    }
 
 
     tasks.withType(JavaCompile) {

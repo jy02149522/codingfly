@@ -3,13 +3,7 @@
 
 <mapper namespace="org.codingfly.account.mapper.SysUserTokenDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="org.codingfly.account.entity.SysUserTokenEntity" id="sysUserTokenMap">
-        <result property="userId" column="user_id"/>
-        <result property="token" column="token"/>
-        <result property="expireTime" column="expire_time"/>
-        <result property="updateTime" column="update_time"/>
-    </resultMap>
-
-
+	<select id="queryByToken" resultType="org.codingfly.account.entity.SysUserTokenEntity">
+		select * from sys_user_token where token = #{value}
+	</select>
 </mapper>

@@ -3,12 +3,14 @@
 
 <mapper namespace="org.codingfly.account.mapper.SysUserRoleDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="org.codingfly.account.entity.SysUserRoleEntity" id="sysUserRoleMap">
-        <result property="id" column="id"/>
-        <result property="userId" column="user_id"/>
-        <result property="roleId" column="role_id"/>
-    </resultMap>
+	<delete id="deleteBatch">
+		delete from sys_user_role where role_id in
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+	</delete>
 
-
+	<select id="queryRoleIdList" resultType="long">
+		select role_id from sys_user_role where user_id = #{value}
+	</select>
 </mapper>

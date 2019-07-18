@@ -35,5 +35,12 @@ spring:
 
 eureka:
   client:
+    enabled: false
     serviceUrl:
       defaultZone: http://192.168.33.178:7000/eureka/
+
+#mybatis-plus:
+#  configuration:
+#    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

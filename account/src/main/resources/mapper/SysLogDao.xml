@@ -3,17 +3,4 @@
 
 <mapper namespace="org.codingfly.account.mapper.SysLogDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="org.codingfly.account.entity.SysLogEntity" id="sysLogMap">
-        <result property="id" column="id"/>
-        <result property="username" column="username"/>
-        <result property="operation" column="operation"/>
-        <result property="method" column="method"/>
-        <result property="params" column="params"/>
-        <result property="time" column="time"/>
-        <result property="ip" column="ip"/>
-        <result property="createDate" column="create_date"/>
-    </resultMap>
-
-
 </mapper>

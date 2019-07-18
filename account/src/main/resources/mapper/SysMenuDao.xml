@@ -3,17 +3,12 @@
 
 <mapper namespace="org.codingfly.account.mapper.SysMenuDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="org.codingfly.account.entity.SysMenuEntity" id="sysMenuMap">
-        <result property="menuId" column="menu_id"/>
-        <result property="parentId" column="parent_id"/>
-        <result property="name" column="name"/>
-        <result property="url" column="url"/>
-        <result property="perms" column="perms"/>
-        <result property="type" column="type"/>
-        <result property="icon" column="icon"/>
-        <result property="orderNum" column="order_num"/>
-    </resultMap>
+	<select id="queryListParentId" resultType="org.codingfly.account.entity.SysMenuEntity">
+		select * from sys_menu where parent_id = #{parentId} order by order_num asc
+	</select>
 
+	<select id="queryNotButtonList" resultType="org.codingfly.account.entity.SysMenuEntity">
+		select * from sys_menu where type != 2 order by order_num asc
+	</select>
 
 </mapper>

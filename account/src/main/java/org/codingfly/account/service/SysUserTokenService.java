@@ -1,20 +1,34 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package org.codingfly.account.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.codingfly.common.utils.PageUtils;
 import org.codingfly.account.entity.SysUserTokenEntity;
-
-import java.util.Map;
+import org.codingfly.common.entity.R;
 
 /**
- * 系统用户Token
+ * 用户Token
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2019-07-03 16:07:33
+ * @author Mark sunlightcs@gmail.com
  */
 public interface SysUserTokenService extends IService<SysUserTokenEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
-}
+	/**
+	 * 生成token
+	 * @param userId  用户ID
+	 */
+	R createToken(long userId);
 
+	/**
+	 * 退出，修改token值
+	 * @param userId  用户ID
+	 */
+	void logout(long userId);
+
+}

@@ -1,29 +1,57 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package org.codingfly.account.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.codingfly.account.entity.SysUserRoleEntity;
+import org.codingfly.common.utils.MapUtils;
 import org.codingfly.account.mapper.SysUserRoleDao;
+import org.codingfly.account.entity.SysUserRoleEntity;
 import org.codingfly.account.service.SysUserRoleService;
-import org.codingfly.common.utils.PageUtils;
-import org.codingfly.common.utils.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.List;
 
 
+/**
+ * 用户与角色对应关系
+ *
+ * @author Mark sunlightcs@gmail.com
+ */
 @Service("sysUserRoleService")
 public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleDao, SysUserRoleEntity> implements SysUserRoleService {
 
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SysUserRoleEntity> page = this.page(
-                new Query<SysUserRoleEntity>().getPage(params),
-                new QueryWrapper<SysUserRoleEntity>()
-        );
+	@Override
+	public void saveOrUpdate(Long userId, List<Long> roleIdList) {
+		//先删除用户与角色关系
+		this.removeByMap(new MapUtils().put("user_id", userId));
 
-        return new PageUtils(page);
-    }
+		if(roleIdList == null || roleIdList.size() == 0){
+			return ;
+		}
 
+		//保存用户与角色关系
+		for(Long roleId : roleIdList){
+			SysUserRoleEntity sysUserRoleEntity = new SysUserRoleEntity();
+			sysUserRoleEntity.setUserId(userId);
+			sysUserRoleEntity.setRoleId(roleId);
+
+			this.save(sysUserRoleEntity);
+		}
+	}
+
+	@Override
+	public List<Long> queryRoleIdList(Long userId) {
+		return baseMapper.queryRoleIdList(userId);
+	}
+
+	@Override
+	public int deleteBatch(Long[] roleIds){
+		return baseMapper.deleteBatch(roleIds);
+	}
 }
