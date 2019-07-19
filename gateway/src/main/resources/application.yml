@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: Cdingfly网关
+  cloud:
+    gateway:
+      routes:
+      # This route rule used to forward request to activity server
+      - id: account
+        uri: lb://activity
+        predicates:
+        - Path=/activity/**
+        filters:
+        - StripPrefix=1
