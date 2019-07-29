@@ -117,3 +117,7 @@ hs_err_pid*
 *.iml
 out
 gen
+
+# rebel
+rebel.xml
+rebel-remote.xml

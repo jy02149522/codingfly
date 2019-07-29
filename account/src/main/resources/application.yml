@@ -10,7 +10,7 @@ server:
 # Spring
 spring:
   application:
-    name: 账户管理系统
+    name: codingfly-account
   profiles:
     active: dev
   # jackson时间格式化

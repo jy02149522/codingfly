@@ -35,9 +35,9 @@ spring:
 
 eureka:
   client:
-    enabled: false
+    enabled: true
     serviceUrl:
-      defaultZone: http://192.168.33.178:7000/eureka/
+      defaultZone: http://127.0.0.1:7000/eureka/
 
 mybatis-plus:
   configuration:

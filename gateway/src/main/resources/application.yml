@@ -1,13 +1,25 @@
+server:
+  port: 8888
+
 spring:
   application:
-    name: Cdingfly网关
+    name: CodingFly-Gateway
   cloud:
     gateway:
-      routes:
-      # This route rule used to forward request to activity server
-      - id: account
-        uri: lb://activity
-        predicates:
-        - Path=/activity/**
-        filters:
-        - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true # 根据注册中心自动默认规则转发
+          lower-case-service-id: true # 开启服务注册小写支持
+
+eureka:
+  client:
+    enabled: true # 是否开启注册
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7000/eureka/
+
+
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: TRACE
+#    org.springframework.http.server.reactive: DEBUG
+#    org.springframework.web.reactive: DEBUG
