@@ -43,6 +43,7 @@ subprojects {
         springCloudVersion="Finchley.SR2"
         shiroVersion = "1.4.0"
         commonsIoVersion = "2.5"
+        springCloudAlibabaVersion = "0.2.2.RELEASE"
     }
 
 
@@ -62,6 +63,7 @@ subprojects {
         imports {
             mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
         }
     }
 

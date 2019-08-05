@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: codingfly-account
+  profiles:
+    active: dev

@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    nacos:
+      config:
+        enabled: true
+        server-addr: 127.0.0.1:8848 # 配置中心
+        file-extension: yml
+      discovery:
+        server-addr: 127.0.0.1:8848 # 注册中心
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 根据注册中心自动默认规则转发
+          lower-case-service-id: true # 开启服务注册小写支持
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

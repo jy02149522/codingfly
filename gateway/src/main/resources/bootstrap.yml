@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: codingfly-gateway
+  profiles:
+    active: dev
+
