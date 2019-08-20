@@ -5,4 +5,5 @@ include 'auth'
 include 'order'
 include 'registry'
 include 'gateway'
+include 'routing'
 
